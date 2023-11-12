@@ -121,6 +121,9 @@ require('lazy').setup({
     opts = {},
     config= function()
       vim.cmd.colorscheme 'tokyonight-storm'
+      vim.g.tokyonight_italic_functions = true
+      vim.g.tokyonight_dark_sidebar = true
+      --vim.g.tokyonight_sidebars = { "packer", "tagbar", "Trouble", "__vista__" }
     end,
   },
 
