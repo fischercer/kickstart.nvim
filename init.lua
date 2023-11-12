@@ -165,6 +165,35 @@ require('lazy').setup({
     end,
   },
 
+  {
+    -- best note taking app in nvim
+    "nvim-neorg/neorg",
+    run = ":Neorg sync-parsers", -- This is the important bit!
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    opts={
+      load = {
+      ["core.defaults"] = {},
+      ["core.dirman"] = {
+        config = {
+          workspaces = {
+            work = "~/DOCUMENTS/NEORG/WORK",
+            private = "~/DOCUMENTS/NEORG/PRIVAT",
+          },
+        },
+      },
+      ["core.export.markdown"] = {},
+      ["core.export"] = {},
+
+      ["core.concealer"] = {},
+      ["core.completion"] = {
+        config = { engine = "nvim-cmp" },
+      },
+      }
+    }
+  },
+
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
