@@ -114,12 +114,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-  },
-
-  {
     -- Theme tokyonight
     "folke/tokyonight.nvim",
     lazy = false,
