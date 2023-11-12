@@ -79,13 +79,13 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
+    signs = {
+      add={hl='GitSignsAdd',text='│',numhl='GitSignsAddNr',linehl='GitSignsAddLn'},
+     change = {hl='GitSignsChange',text='│',numhl='GitSignsChangeNr',linehl='GitSignsChangeLn'},
+     delete = {hl='GitSignsDelete',text='_',numhl='GitSignsDeleteNr',linehl='GitSignsDeleteLn'},
+     topdelete = {hl='GitSignsDelete',text='‾',numhl='GitSignsDeleteNr',linehl='GitSignsDeleteLn'},
+     changedelete = {hl='GitSignsChange',text='~',numhl='GitSignsChangeNr',linehl='GitSignsChangeLn'},
+    },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
 
