@@ -150,6 +150,21 @@ require('lazy').setup({
     opts = {},
   },
 
+  {
+    -- Increments/ changes all but numbers
+    'nishigori/increment-activator',
+    config = function()
+      vim.g.increment_activator_filetype_candidates = {
+        python = {
+          { "info", "debug", "warning", "error" },
+        },
+        norg = {
+          { "online", "offline" },
+        },
+      }
+    end,
+  },
+
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
