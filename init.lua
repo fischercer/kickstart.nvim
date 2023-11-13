@@ -275,17 +275,17 @@ require('lazy').setup({
       -- double {{ means try formatter until finding one { means use all
       formatters_by_ft = {
         lua = { 'stylua' },
-        python = { 'isort', 'black' }, -- TODO: change this to something that is really fast
-        go = {},
+        python = { 'isort', 'ruff_format' },
+        go = { 'gofumpt', 'goimports' },
         javascript = { { 'prettierd', 'prettier' } },
       },
       -- Set up format-on-save
       format_on_save = { timeout_ms = 500, lsp_fallback = true },
       -- Customize formatters (the parameters of the formatters)
       formatters = {
-        shfmt = {
-          prepend_args = { '-i', '2' },
-        },
+        -- shfmt = {
+        --   prepend_args = { '-i', '2' },
+        -- },
       },
     },
     init = function()
