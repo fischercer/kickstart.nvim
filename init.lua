@@ -282,6 +282,28 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
 }, {})
 
+-- set NEOVIDE options
+if vim.g.neovide then
+  -- set font
+  vim.o.guifont = "Source Code Pro:h14"
+
+  local function neovideScale(amount)
+    local temp = vim.g.neovide_scale_factor + amount
+    if temp < 0.5 then
+      return
+    end
+    vim.g.neovide_scale_factor = temp
+  end
+
+  vim.keymap.set("n", "<C-+>", function()
+    neovideScale(0.1)
+  end)
+
+  vim.keymap.set("n", "<C-->", function()
+    neovideScale(-0.1)
+  end)
+end
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
