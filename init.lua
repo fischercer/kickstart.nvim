@@ -1,4 +1,3 @@
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -350,6 +349,8 @@ vim.o.showbreak = "↪"
 
 -- Set line lenght indicators
 vim.wo.colorcolumn = "80,120"
+
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -705,6 +706,7 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
