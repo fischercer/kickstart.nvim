@@ -5,6 +5,27 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+
+-- must be here to be registered before the auto formater
+local group_main = vim.api.nvim_create_augroup("maingroup", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    local modified = vim.fn.getbufvar(args.buf, "&mod")
+    if modified == 1 then
+      -- updates copy right notice
+      vim.api.nvim_command(
+        [[silent exec "g#\\cCopyright (C) \\(".strftime("%Y")."\\)\\@![0-9]\\{4\\}\\(-".strftime("%Y")."\\)\\@!#s#\\([0-9]\\{4\\}\\)\\(-[0-9]\\{4\\}\\)\\?#\\1-".strftime("%Y")]])
+      -- removes trailing whites paces
+      vim.api.nvim_command([[%s/\s\+$//e]])
+    else
+    end
+  end,
+  group = group_main
+})
+
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
