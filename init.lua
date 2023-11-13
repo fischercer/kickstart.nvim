@@ -100,13 +100,13 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
-    signs = {
-      add={hl='GitSignsAdd',text='│',numhl='GitSignsAddNr',linehl='GitSignsAddLn'},
-     change = {hl='GitSignsChange',text='│',numhl='GitSignsChangeNr',linehl='GitSignsChangeLn'},
-     delete = {hl='GitSignsDelete',text='_',numhl='GitSignsDeleteNr',linehl='GitSignsDeleteLn'},
-     topdelete = {hl='GitSignsDelete',text='‾',numhl='GitSignsDeleteNr',linehl='GitSignsDeleteLn'},
-     changedelete = {hl='GitSignsChange',text='~',numhl='GitSignsChangeNr',linehl='GitSignsChangeLn'},
-    },
+      signs = {
+        add = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+        change = { hl = 'GitSignsChange', text = '│', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+        delete = { hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+        topdelete = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+        changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+      },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
 
@@ -140,7 +140,7 @@ require('lazy').setup({
     lazy = false,
     priority = 1000,
     opts = {},
-    config= function()
+    config = function()
       vim.cmd.colorscheme 'tokyonight-storm'
       vim.g.tokyonight_italic_functions = true
       vim.g.tokyonight_dark_sidebar = true
@@ -193,24 +193,24 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-    opts={
+    opts = {
       load = {
-      ["core.defaults"] = {},
-      ["core.dirman"] = {
-        config = {
-          workspaces = {
-            work = "~/DOCUMENTS/NEORG/WORK",
-            private = "~/DOCUMENTS/NEORG/PRIVAT",
+        ["core.defaults"] = {},
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              work = "~/DOCUMENTS/NEORG/WORK",
+              private = "~/DOCUMENTS/NEORG/PRIVAT",
+            },
           },
         },
-      },
-      ["core.export.markdown"] = {},
-      ["core.export"] = {},
+        ["core.export.markdown"] = {},
+        ["core.export"] = {},
 
-      ["core.concealer"] = {},
-      ["core.completion"] = {
-        config = { engine = "nvim-cmp" },
-      },
+        ["core.concealer"] = {},
+        ["core.completion"] = {
+          config = { engine = "nvim-cmp" },
+        },
       }
     }
   },
@@ -407,7 +407,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
