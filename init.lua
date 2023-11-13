@@ -409,12 +409,13 @@ require('telescope').setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<esc>'] = "close", -- closes with only one esc press
       },
     },
   },
 }
 
--- Enable telescope fzf native, if installed
+-- Enable telescope fzf native, if installeC-Ld
 pcall(require('telescope').load_extension, 'fzf')
 
 -- Telescope live_grep in git root
