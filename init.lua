@@ -345,6 +345,11 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Set line break symbol
+vim.o.showbreak = "↪"
+
+-- Set line lenght indicators
+vim.wo.colorcolumn = "80,120"
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
