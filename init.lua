@@ -378,6 +378,10 @@ vim.o.showbreak = '↪'
 -- Set line lenght indicators
 vim.wo.colorcolumn = '80,120'
 
+-- set tab sizes
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
