@@ -366,6 +366,18 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+
+-- better movement between splits
+-- TODO: conflicts with keys?
+vim.keymap.set("n", "<C-j>", "<C-W><C-J>", { silent = true, noremap = true })
+vim.keymap.set("n", "<C-k>", "<C-W><C-K>", { silent = true, noremap = true })
+vim.keymap.set("n", "<C-l>", "<C-W><C-L>", { silent = true, noremap = true })
+vim.keymap.set("n", "<C-h>", "<C-W><C-H>", { silent = true, noremap = true })
+vim.keymap.set("n", "<C-Down>", "<C-W><C-J>", { silent = true, noremap = true })
+vim.keymap.set("n", "<C-Up>", "<C-W><C-K>", { silent = true, noremap = true })
+vim.keymap.set("n", "<C-Right>", "<C-W><C-L>", { silent = true, noremap = true })
+vim.keymap.set("n", "<C-Left>", "<C-W><C-H>", { silent = true, noremap = true })
+
 -- moves lines up and down with ALT + j/k
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { silent = true })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
