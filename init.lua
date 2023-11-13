@@ -266,6 +266,36 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  {
+    -- autoformatting, defaults to conform based formatting and falls back to lsp formatting when not available
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    -- Everything in opts will be passed to setup()
+    opts = {
+      -- Define your formatters
+      -- double {{ means try formatter until finding one { means use all
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        python = { 'isort', 'black' }, -- TODO: change this to something that is really fast
+        go = {},
+        javascript = { { 'prettierd', 'prettier' } },
+      },
+      -- Set up format-on-save
+      format_on_save = { timeout_ms = 500, lsp_fallback = true },
+      -- Customize formatters (the parameters of the formatters)
+      formatters = {
+        shfmt = {
+          prepend_args = { '-i', '2' },
+        },
+      },
+    },
+    init = function()
+      -- If you want the formatexpr, here is the place to set it
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
