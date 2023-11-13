@@ -368,7 +368,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 
 -- better movement between splits
--- TODO: conflicts with keys?
 vim.keymap.set("n", "<C-j>", "<C-W><C-J>", { silent = true, noremap = true })
 vim.keymap.set("n", "<C-k>", "<C-W><C-K>", { silent = true, noremap = true })
 vim.keymap.set("n", "<C-l>", "<C-W><C-L>", { silent = true, noremap = true })
