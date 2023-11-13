@@ -4,26 +4,23 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-
 -- must be here to be registered before the auto formater
-local group_main = vim.api.nvim_create_augroup("maingroup", { clear = true })
+local group_main = vim.api.nvim_create_augroup('maingroup', { clear = true })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
   callback = function(args)
-    local modified = vim.fn.getbufvar(args.buf, "&mod")
+    local modified = vim.fn.getbufvar(args.buf, '&mod')
     if modified == 1 then
       -- updates copy right notice
-      vim.api.nvim_command(
-        [[silent exec "g#\\cCopyright (C) \\(".strftime("%Y")."\\)\\@![0-9]\\{4\\}\\(-".strftime("%Y")."\\)\\@!#s#\\([0-9]\\{4\\}\\)\\(-[0-9]\\{4\\}\\)\\?#\\1-".strftime("%Y")]])
+      vim.api.nvim_command [[silent exec "g#\\cCopyright (C) \\(".strftime("%Y")."\\)\\@![0-9]\\{4\\}\\(-".strftime("%Y")."\\)\\@!#s#\\([0-9]\\{4\\}\\)\\(-[0-9]\\{4\\}\\)\\?#\\1-".strftime("%Y")]]
       -- removes trailing whites paces
-      vim.api.nvim_command([[%s/\s\+$//e]])
+      vim.api.nvim_command [[%s/\s\+$//e]]
     else
     end
   end,
-  group = group_main
+  group = group_main,
 })
-
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -135,7 +132,7 @@ require('lazy').setup({
 
   {
     -- Theme tokyonight
-    "folke/tokyonight.nvim",
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
     opts = {},
@@ -176,10 +173,10 @@ require('lazy').setup({
     config = function()
       vim.g.increment_activator_filetype_candidates = {
         python = {
-          { "info", "debug", "warning", "error" },
+          { 'info', 'debug', 'warning', 'error' },
         },
         norg = {
-          { "online", "offline" },
+          { 'online', 'offline' },
         },
       }
     end,
@@ -187,50 +184,51 @@ require('lazy').setup({
 
   {
     -- best note taking app in nvim
-    "nvim-neorg/neorg",
-    run = ":Neorg sync-parsers", -- This is the important bit!
+    'nvim-neorg/neorg',
+    run = ':Neorg sync-parsers', -- This is the important bit!
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
     opts = {
       load = {
-        ["core.defaults"] = {},
-        ["core.dirman"] = {
+        ['core.defaults'] = {},
+        ['core.dirman'] = {
           config = {
             workspaces = {
-              work = "~/DOCUMENTS/NEORG/WORK",
-              private = "~/DOCUMENTS/NEORG/PRIVAT",
+              work = '~/DOCUMENTS/NEORG/WORK',
+              private = '~/DOCUMENTS/NEORG/PRIVAT',
             },
           },
         },
-        ["core.export.markdown"] = {},
-        ["core.export"] = {},
+        ['core.export.markdown'] = {},
+        ['core.export'] = {},
 
-        ["core.concealer"] = {},
-        ["core.completion"] = {
-          config = { engine = "nvim-cmp" },
+        ['core.concealer'] = {},
+        ['core.completion'] = {
+          config = { engine = 'nvim-cmp' },
         },
-      }
-    }
+      },
+    },
   },
 
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    },keys = {
+    },
+    keys = {
       {
-        "<leader>n",
-        function ()
-          require("neo-tree.command").execute({ toggle = true, position = "current"})
+        '<leader>n',
+        function()
+          require('neo-tree.command').execute { toggle = true, position = 'current' }
         end,
-        desc = "Opens neo tree like netrw"
+        desc = 'Opens neo tree like netrw',
       },
-    }
+    },
   },
 
   -- "gc" to comment visual regions/lines
@@ -314,7 +312,7 @@ require('lazy').setup({
 -- set NEOVIDE options
 if vim.g.neovide then
   -- set font
-  vim.o.guifont = "Source Code Pro:h14"
+  vim.o.guifont = 'Source Code Pro:h14'
 
   local function neovideScale(amount)
     local temp = vim.g.neovide_scale_factor + amount
@@ -324,11 +322,11 @@ if vim.g.neovide then
     vim.g.neovide_scale_factor = temp
   end
 
-  vim.keymap.set("n", "<C-+>", function()
+  vim.keymap.set('n', '<C-+>', function()
     neovideScale(0.1)
   end)
 
-  vim.keymap.set("n", "<C-->", function()
+  vim.keymap.set('n', '<C-->', function()
     neovideScale(-0.1)
   end)
 end
@@ -375,11 +373,10 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- Set line break symbol
-vim.o.showbreak = "↪"
+vim.o.showbreak = '↪'
 
 -- Set line lenght indicators
-vim.wo.colorcolumn = "80,120"
-
+vim.wo.colorcolumn = '80,120'
 
 -- [[ Basic Keymaps ]]
 
@@ -397,28 +394,27 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
-
 -- better movement between splits
-vim.keymap.set("n", "<C-j>", "<C-W><C-J>", { silent = true, noremap = true })
-vim.keymap.set("n", "<C-k>", "<C-W><C-K>", { silent = true, noremap = true })
-vim.keymap.set("n", "<C-l>", "<C-W><C-L>", { silent = true, noremap = true })
-vim.keymap.set("n", "<C-h>", "<C-W><C-H>", { silent = true, noremap = true })
-vim.keymap.set("n", "<C-Down>", "<C-W><C-J>", { silent = true, noremap = true })
-vim.keymap.set("n", "<C-Up>", "<C-W><C-K>", { silent = true, noremap = true })
-vim.keymap.set("n", "<C-Right>", "<C-W><C-L>", { silent = true, noremap = true })
-vim.keymap.set("n", "<C-Left>", "<C-W><C-H>", { silent = true, noremap = true })
+vim.keymap.set('n', '<C-j>', '<C-W><C-J>', { silent = true, noremap = true })
+vim.keymap.set('n', '<C-k>', '<C-W><C-K>', { silent = true, noremap = true })
+vim.keymap.set('n', '<C-l>', '<C-W><C-L>', { silent = true, noremap = true })
+vim.keymap.set('n', '<C-h>', '<C-W><C-H>', { silent = true, noremap = true })
+vim.keymap.set('n', '<C-Down>', '<C-W><C-J>', { silent = true, noremap = true })
+vim.keymap.set('n', '<C-Up>', '<C-W><C-K>', { silent = true, noremap = true })
+vim.keymap.set('n', '<C-Right>', '<C-W><C-L>', { silent = true, noremap = true })
+vim.keymap.set('n', '<C-Left>', '<C-W><C-H>', { silent = true, noremap = true })
 
 -- moves lines up and down with ALT + j/k
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { silent = true })
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
-vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { silent = true })
-vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { silent = true })
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { silent = true })
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set('n', '<A-j>', ':m .+1<CR>==', { silent = true })
+vim.keymap.set('n', '<A-k>', ':m .-2<CR>==', { silent = true })
+vim.keymap.set('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { silent = true })
+vim.keymap.set('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { silent = true })
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { silent = true })
 
 -- spell checking
-vim.keymap.set("n", "<Leader>spg", ":setlocal spell! spelllang=de_de<CR>", { silent = true }) -- german spelling
-vim.keymap.set("n", "<Leader>sp", ":setlocal spell! spelllang=en_us<CR>", { silent = true })  -- english spelling
+vim.keymap.set('n', '<Leader>spg', ':setlocal spell! spelllang=de_de<CR>', { silent = true }) -- german spelling
+vim.keymap.set('n', '<Leader>sp', ':setlocal spell! spelllang=en_us<CR>', { silent = true }) -- english spelling
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -439,7 +435,7 @@ require('telescope').setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
-        ['<esc>'] = "close", -- closes with only one esc press
+        ['<esc>'] = 'close', -- closes with only one esc press
       },
     },
   },
@@ -456,17 +452,17 @@ local function find_git_root()
   local current_dir
   local cwd = vim.fn.getcwd()
   -- If the buffer is not associated with a file, return nil
-  if current_file == "" then
+  if current_file == '' then
     current_dir = cwd
   else
     -- Extract the directory from the current file's path
-    current_dir = vim.fn.fnamemodify(current_file, ":h")
+    current_dir = vim.fn.fnamemodify(current_file, ':h')
   end
 
   -- Find the Git root directory from the current file's path
-  local git_root = vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")[1]
+  local git_root = vim.fn.systemlist('git -C ' .. vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')[1]
   if vim.v.shell_error ~= 0 then
-    print("Not a git repository. Searching on current working directory")
+    print 'Not a git repository. Searching on current working directory'
     return cwd
   end
   return git_root
@@ -476,9 +472,9 @@ end
 local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
-    require('telescope.builtin').live_grep({
+    require('telescope.builtin').live_grep {
       search_dirs = { git_root },
-    })
+    }
   end
 end
 
@@ -510,7 +506,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'norg', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -617,9 +613,9 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 
-  local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+  local signs = { Error = '󰅚 ', Warn = '󰀪 ', Hint = '󰌶 ', Info = ' ' }
   for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
+    local hl = 'DiagnosticSign' .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
 end
@@ -736,7 +732,6 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
