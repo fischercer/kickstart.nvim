@@ -415,6 +415,9 @@ vim.wo.colorcolumn = '80,120'
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 
+-- scrolls even when cursor is not an top/bottom of screen
+vim.o.scrolloff = 8
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
