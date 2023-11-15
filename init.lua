@@ -478,7 +478,7 @@ require('telescope').setup {
   },
 }
 
--- Enable telescope fzf native, if installeC-Ld
+-- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
 -- Telescope live_grep in git root
