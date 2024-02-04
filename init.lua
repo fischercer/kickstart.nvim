@@ -189,30 +189,35 @@ require('lazy').setup({
   {
     -- best note taking app in nvim
     'nvim-neorg/neorg',
-    run = ':Neorg sync-parsers', -- This is the important bit!
+    build = ':Neorg sync-parsers', -- This is the important bit!
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-    opts = {
-      load = {
-        ['core.defaults'] = {},
-        ['core.dirman'] = {
-          config = {
-            workspaces = {
-              work = '~/DOCUMENTS/NEORG/WORK',
-              private = '~/DOCUMENTS/NEORG/PRIVAT',
+    cmd = 'Neorg',
+    ft = 'neorg',
+    config = function()
+      require('neorg').setup {
+        load = {
+          ['core.defaults'] = {},
+          ['core.dirman'] = {
+            config = {
+              workspaces = {
+                work = '~/DOCUMENTS/NEORG/WORK',
+                private = '~/DOCUMENTS/NEORG/PRIVAT',
+              },
+              default_workspace = 'work',
             },
           },
-        },
-        ['core.export.markdown'] = {},
-        ['core.export'] = {},
+          ['core.export.markdown'] = {},
+          ['core.export'] = {},
 
-        ['core.concealer'] = {},
-        ['core.completion'] = {
-          config = { engine = 'nvim-cmp' },
+          ['core.concealer'] = {},
+          ['core.completion'] = {
+            config = { engine = 'nvim-cmp' },
+          },
         },
-      },
-    },
+      }
+    end,
   },
 
   {
