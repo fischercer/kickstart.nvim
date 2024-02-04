@@ -349,6 +349,11 @@ require('lazy').setup({
 
 -- set NEOVIDE options
 if vim.g.neovide then
+  -- disble some animations
+  vim.g.neovide_cursor_animate_command_line = false
+  -- change animations
+  vim.g.neovide_scroll_animation_length = 0.1
+
   -- set font
   vim.o.guifont = 'Source Code Pro:h14'
 
