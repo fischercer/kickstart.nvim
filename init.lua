@@ -4,7 +4,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- must be here to be registered before the auto formater
 local group_main = vim.api.nvim_create_augroup('maingroup', { clear = true })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
