@@ -315,6 +315,7 @@ require('lazy').setup({
         python = { 'isort', 'ruff_format' },
         go = { 'gofumpt', 'goimports' },
         javascript = { { 'prettierd', 'prettier' } },
+        sql = { 'sqlfmt' },
       },
       -- Set up format-on-save
       format_on_save = { timeout_ms = 500, lsp_fallback = true },
